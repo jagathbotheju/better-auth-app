@@ -14,7 +14,7 @@ const LoginErrorPage = async ({ searchParams }: Props) => {
 
       <p className="text-destructive">
         {sp.error === "account_not_linked"
-          ? "This Account alrady linked to another signIn method"
+          ? "This Account already linked to another signIn method"
           : "Unknown Error"}
       </p>
 

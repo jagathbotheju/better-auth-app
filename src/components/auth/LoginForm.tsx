@@ -19,6 +19,7 @@ import { signIn } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import MagicLink from "./MagicLink";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -59,9 +60,14 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 w-full">
+      <MagicLink />
+
       <Form {...form}>
-        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          className="space-y-6 flex flex-col"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
           {/* email */}
           <FormField
             control={form.control}
@@ -91,15 +97,13 @@ const LoginForm = () => {
               </FormItem>
             )}
           />
+          <div className="flex self-end -mt-4">
+            <Link href="/auth/forgot-password" className="text-xs">
+              Forgot Password?
+            </Link>
+          </div>
 
-          <Link
-            href={`/auth/register`}
-            className="my-4 flex justify-center hover:underline hover:text-primary"
-          >
-            <p className="text-muted-foreground">No account, please register</p>
-          </Link>
-
-          <Button className="mt-2 w-full" disabled={isLoading} type="submit">
+          <Button className="w-full" disabled={isLoading} type="submit">
             {isLoading && <Loader2Icon className="w-6 h-6 animate-spin" />}
             {isLoading ? "Logging In..." : "Login"}
           </Button>
@@ -107,7 +111,16 @@ const LoginForm = () => {
       </Form>
 
       <div className="flex flex-col gap-2 justify-center items-center w-full">
+        <Link
+          href={`/auth/register`}
+          className="my-4 flex justify-center hover:underline hover:text-primary"
+        >
+          <p className="text-muted-foreground">No account, please register</p>
+        </Link>
+
         <p className="text-xs">or login with</p>
+
+        {/* google */}
         <Button
           type="button"
           className="w-full"

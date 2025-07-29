@@ -18,6 +18,7 @@ const AuthButton = () => {
   const router = useRouter();
   const { data: session, isPending } = useSession();
   const user = session?.user;
+  // console.log("session", session);
 
   return (
     <>

@@ -49,7 +49,9 @@ const RegisterForm = () => {
         },
         onSuccess: () => {
           setIsLoading(false);
-          toast.success("Account created successfully, Please Login");
+          toast.success(
+            "Account Registration Successful, Please verify your email address"
+          );
           router.push("/auth/login");
         },
         onError: (ctx) => {
